@@ -1,0 +1,21 @@
+Just some javascript hacking
+
+Some sort of pong game running in modern browsers (canvas 2d support)
+
+Features
+- almost working
+- capable running with multiple balls
+
+Keyboard input
+- w, s  - move left player
+- up, down - move right player
+- esc, r - reset game
+- pause, p - pause game
+
+Todo
+- fix ball bugging while player moves and ball is inside paddle
+- retro font (custom rendering of 2 byte chars)
+
+Idea
+- 3d canvas
+- cc music?
