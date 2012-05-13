@@ -1,3 +1,16 @@
+var Chars = {
+	0: '111101101101111',
+	1: '010010010010010',
+	2: '111001111100111',
+	3: '111001011001111',
+	4: '101101111001001',
+	5: '111100111001111',
+	6: '111100111101111',
+	7: '111001001001001',
+	8: '111101111101111',
+	9: '111101111001111',
+};
+
 var Player = {
 	ACTION: {
 		UP: 'up',
@@ -322,13 +335,21 @@ var Pong = {
 		//console.info(this.options.playerHeight);
 
 		// score
-		this.context.font = '' + this.options.score.size + 'pt monospace bold';
+		this.drawString(
+			player.score,
+			{
+				x: ((index * (this.size.width / 2)) + (this.size.width / 4)) | 1,
+				y: this.options.score.y
+			}
+		);
+
+		/*this.context.font = '' + this.options.score.size + 'pt monospace bold';
 		var size = this.context.measureText(player.score);
 		this.context.fillText(
 			player.score,
 			((index * (this.size.width / 2)) + (this.size.width / 4) - (size.width / 2)) | 1,
 			(this.options.score.size + this.options.score.y) | 1
-		);
+		);*/
 	},
 
 	resetGame: function() {
@@ -355,6 +376,44 @@ var Pong = {
 
 	deg2rad: function(angle) {
 		return (angle / 180) * Math.PI;
+	},
+
+	// TODO char size in options
+	drawString: function(string, origin) {
+		string = '' + string;
+		for (var i = 0; i < string.length; ++i) {
+			this.drawChar(string[i], origin);
+			origin.x += 20;
+		}
+	},
+
+	drawChar: function(char, origin) {
+		if (!(char in Chars)) {
+			throw 'char «' + char + '» not available';
+		}
+
+		this.context.save();
+		this.context.translate(origin.x, origin.y);
+		var layout = Chars[char];
+		var pSize = 5;
+		var pPadding = 1;
+
+		for (var i = 0; i < layout.length; ++i) {
+			if (layout[i] == 0) {
+				continue;
+			}
+
+			var x = i % 3;
+			var y = Math.floor(i / 3);
+			this.context.fillRect(
+				x * (pSize + pPadding),
+				y * (pSize + pPadding),
+				pSize,
+				pSize
+			);
+		}
+
+		this.context.restore();
 	},
 };
 document.addEventListener('DOMContentLoaded', Pong.init.bind(Pong));

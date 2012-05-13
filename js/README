@@ -13,9 +13,14 @@ Keyboard input
 - pause, p - pause game
 
 Todo
+- fix js error on game reset
 - fix ball bugging while player moves and ball is inside paddle
-- retro font (custom rendering of 2 byte chars)
+- finish retro font
+- clean code
+- compare with origin pong behaviour
+- ball collisions
 
 Idea
 - 3d canvas
 - cc music?
+- multiple canvas to prevent full redraw
