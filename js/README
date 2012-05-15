@@ -14,7 +14,6 @@ Keyboard input
 
 Todo
 - fix js error on game reset
-- fix ball bugging while player moves and ball is inside paddle
 - finish retro font
 - clean code
 - compare with origin pong behaviour

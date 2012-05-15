@@ -258,12 +258,42 @@ var Pong = {
 		);
 	},
 
+	intersection: function(rect1, rect2) {
+		var r1 = this.rectSize(rect1);
+                var r2 = this.rectSize(rect2);
+		var intersection = {};
+
+		intersection.top = Math.max(r1.top, r2.top);
+		intersection.right = Math.min(r1.right, r2.right);
+		intersection.bottom = Math.min(r1.bottom, r2.bottom);
+		intersection.left = Math.max(r1.left, r2.left);
+
+		return this.absoluteRect2Rect(intersection);
+	},
+
+	absoluteRect2Rect: function(rect) {
+		return {
+			origin: {
+				x: rect.left,
+				y: rect.top
+			},
+			size: {
+				width: rect.right - rect.left,
+				height: rect.bottom - rect.top
+			}
+		};
+	},
+
 	detectPlayerHits: function() {
 		this.balls.forEach(function(ball) {
 			this.players.forEach(function(player) {
 				if (this.intersects(ball.rect, player.rect)) {
 					// collision detected
-					//console.info((player.left ? 'left' : 'right') + ' collision detected');
+
+					// fix ball position
+					var intersection = this.intersection(ball.rect, player.rect);
+					ball.rect.origin.x -= (intersection.size.width * ball.direction);
+
 					ball.direction *= -1;
 
 					// todo player movement changes angle
