@@ -129,7 +129,6 @@ var Pong = {
 			y: 10,
 			size: 20,
 		},
-		fps: 30,
 	},
 
 	balls: [],
