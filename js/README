@@ -13,8 +13,6 @@ Keyboard input
 - pause, p - pause game
 
 Todo
-- fix js error on game reset
-- finish retro font
 - clean code
 - compare with origin pong behaviour
 - ball collisions

@@ -440,7 +440,7 @@ var Pong = {
 			player.rect.origin.y = playerY;
 		}.bind(this));
 		this.balls.forEach(function(ball) {
-			this.resetBall(this.ball);
+			this.resetBall(ball);
 		}.bind(this));
 
 		this.draw();
